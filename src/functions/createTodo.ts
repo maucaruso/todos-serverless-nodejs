@@ -12,18 +12,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
   const { deadline, title } = JSON.parse(event.body) as ICreateTodo;
   const { userid } = event.pathParameters;
   
-  // const response = await document.query({
-  //   TableName: "todos",
-  //   KeyConditionExpression: "id = :id",
-  //   ExpressionAttributeValues: {
-  //     ":id": id
-  //   }
-  // }).promise();
-  
-  // const userAlreadyExists = await response.Items[0];
-  
-  // if (!userAlreadyExists) {
-  const result = await document.put({
+  await document.put({
     TableName: "todos",
     Item: {
       id: uuidV4(),
@@ -33,13 +22,11 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       deadline: new Date(deadline).getTime()
     }
   }).promise();
-  // }
 
   return {
     statusCode: 201,
     body: JSON.stringify({
-      message: "TODO criado com sucesso!",
-      result
+      message: "TODO criado com sucesso!"
     }),
   }
 }
