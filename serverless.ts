@@ -97,6 +97,10 @@ const serverlessConfiguration: AWS = {
             {
               AttributeName: "id",
               AttributeType: "S",
+            },
+            {
+              AttributeName: "user_id",
+              AttributeType: "S",
             }
           ],
           KeySchema: [
@@ -104,6 +108,24 @@ const serverlessConfiguration: AWS = {
               AttributeName: "id",
               KeyType: "HASH"
             }
+          ],
+          GlobalSecondaryIndexes: [
+            {
+              IndexName: "userIdIndex",
+              KeySchema: [
+                {
+                  AttributeName: "user_id",
+                  KeyType: "HASH"
+                }
+              ],
+              Projection: {
+                ProjectionType: "ALL",
+              },
+              ProvisionedThroughput: {
+                ReadCapacityUnits: 5,
+                WriteCapacityUnits: 5
+              },
+            },
           ]
         }
       }

@@ -16,6 +16,8 @@
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
     "@types/uuid": "^9.0.1",
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-offline": "^12.0.4",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
